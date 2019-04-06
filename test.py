@@ -6,9 +6,9 @@ import matplotlib.pyplot
 
 
 
-sp500 = get_data('^gspc' , start_date = '01/02/2010' , end_date = '04/06/2019')
+sp500 = get_data('^gspc' , start_date = '12/27/2018' , end_date = '04/06/2019')
 ticker = input('Input the ticker of the stock: ')
-share = get_data(ticker, start_date = '01/02/2010' , end_date = '04/06/2019')
+share = get_data(ticker, start_date = '12/27/2018' , end_date = '04/06/2019')
 
 sp500['new_div_first'] = sp500['adjclose'] / sp500['adjclose'].iloc[0]
 sp500['pct_change'] = (sp500['new_div_first']-1)*100
