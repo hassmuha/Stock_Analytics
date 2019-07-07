@@ -5,16 +5,62 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot
 
 #ticker = input('Input the ticker of the stock: ')
-ticker = 'NFLX'
-share = stock_info.get_data(ticker, start_date = '06/19/2018' , end_date = '06/20/2019')
+ticker = 'NVDA'
+share = stock_info.get_data(ticker, start_date = '07/07/2018' , end_date = '07/07/2019')
 shr_close_vals = share['adjclose']
 
-local_max = 0
+local_max = 0.0000000001
+local_min = 1000000
+state = 'buy'
+investment_init = 5*shr_close_vals[0]
+investment = investment_init
+profit = 0
+
 for idx, val in enumerate(shr_close_vals):
     if idx > 0:
+        current = val
         previous = shr_close_vals[idx - 1]
-        diff = val - previous
 
-        if diff < 0:
-            change = -diff/previous * 100
-            print(diff/val)
+        if state=='buy':
+            if current > local_max:
+                local_max = current
+            else:
+                diff_lmax = local_max - current #now this is >= 0
+                diff_lmax_percent = (diff_lmax/local_max)*100
+                if diff_lmax_percent > 10:
+                    state='sell'
+                    print(state)
+                    print(shr_close_vals.index[idx])
+                    print(shr_close_vals[idx-3:idx+3])
+                    local_max = 0.0000000001
+                    shares_price = 5*current
+                    profit = profit+(shares_price-investment)
+                    print(profit)
+
+                    continue
+
+        if state=='sell':
+            if current < local_min:
+                local_min = current
+            else:
+                diff_lmin = current - local_min #now this is >= 0
+                diff_lmin_percent = (diff_lmin/local_min)*100
+                if diff_lmin_percent > 2:
+                    state='buy'
+                    print(state)
+                    print(shr_close_vals.index[idx])
+                    print(shr_close_vals[idx-3:idx+3])
+                    local_min = 1000000
+                    investment = 5*current
+                    profit = profit+(investment_init-investment)
+                    print(profit)
+                    continue
+
+if state=='buy': #end profit calculation
+    shares_price = 5*current
+    profit = profit+(shares_price-investment)
+print(profit)
+graph = shr_close_vals.plot(label=ticker)
+graph.set_ylabel('Return (in %)')
+graph.set_xlabel('Date')
+matplotlib.pyplot.show()
