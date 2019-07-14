@@ -5,8 +5,8 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot
 
 #ticker = input('Input the ticker of the stock: ')
-ticker = 'EXS2.DE'
-share = stock_info.get_data(ticker, start_date = '01/01/2012' , end_date = '08/07/2019')
+ticker = 'NVDA'
+share = stock_info.get_data(ticker, start_date = '01/01/2019' , end_date = '07/14/2019')
 shr_close_vals = share['adjclose']
 
 local_max = 0.0000000001
