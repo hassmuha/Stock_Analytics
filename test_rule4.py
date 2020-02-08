@@ -6,13 +6,13 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot
 
 #ticker = input('Input the ticker of the stock: ')
-tickers = ['V','NVDA']
+tickers = ['EWG']
 shr_close_vals = []
 local_max = []
 local_min = []
 
 for idx,ticker in enumerate(tickers):
-    share = stock_info.get_data(ticker, start_date = '07/01/2016' , end_date = '07/14/2019')
+    share = stock_info.get_data(ticker, start_date = '11/12/2014' , end_date = '11/12/2019')
     shr_close_vals.append(share['adjclose'])
     local_max.append(0.0000000001)
     local_min.append(1000000)

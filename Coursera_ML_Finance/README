@@ -1,0 +1,9 @@
+(anaconda setup is installed)
+conda install jupyter notebook (installing the jupyter notebook)
+
+jupyter notebook (run in the same folder where exercises exist, will open directly in chrome)
+
+conda install -c anaconda scikit-learn (installing new packages)
+
+(for installing tensorflow)
+conda install -c conda-forge tensorflow

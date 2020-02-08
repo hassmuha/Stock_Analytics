@@ -6,7 +6,7 @@ import matplotlib.pyplot
 
 #ticker = input('Input the ticker of the stock: ')
 ticker = 'IQ'
-share = stock_info.get_data(ticker, start_date = '01/01/2019' , end_date = '07/07/2019')
+share = stock_info.get_data(ticker, start_date = '01/01/2018' , end_date = '07/07/2019')
 shr_close_vals = share['adjclose']
 
 local_max = 0.0000000001
